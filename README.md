@@ -5,7 +5,7 @@
 Code for the paper "**Merge, Then Compress: Demystify Efficient SMoE with Hints from Its Routing Policy**"
 
 * Authors: [Pingzhi Li](https://pingzhili.github.io/), [Zhenyu Zhang](https://kyriection.github.io/), [Prateek Yadav](https://prateeky2806.github.io/), [Yi-Lin Sung](https://ylsung.github.io/), [Yu Cheng](https://www.linkedin.com/in/chengyu05/), [Mohit Bansal](https://www.cs.unc.edu/~mbansal/) and [Tianlong Chen](https://tianlong-chen.github.io/)
-* Paper: [arXiv]()
+* Paper: [arXiv](https://arxiv.org/abs/2310.01334)
 
 ## Overview
 
@@ -36,7 +36,7 @@ virtually no loss in performance.
 ## Setup
 
 ```shell
-conda create -n mcmoe python=3.9 -y && conda activate mcmoe
+conda create -n mcsmoe python=3.9 -y && conda activate mcsmoe
 pip install -r requirements.txt
 ```
 
@@ -134,3 +134,15 @@ Please refer to [scripts/t5](scripts/t5) and [scripts/gpt](scripts/gpt) for more
 
 
 ## Citation
+
+```bibtex
+@misc{li2023merge,
+      title={Merge, Then Compress: Demystify Efficient SMoE with Hints from Its Routing Policy}, 
+      author={Pingzhi Li and Zhenyu Zhang and Prateek Yadav and Yi-Lin Sung and Yu Cheng and Mohit Bansal and Tianlong Chen},
+      year={2023},
+      eprint={2310.01334},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
+
