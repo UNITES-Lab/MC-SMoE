@@ -4,7 +4,7 @@ export CUDA_VISIBLE_DEVICES=0
 
 
 accelerate launch --config_file static/finetune_config.yaml \
-  --main_process_port 29510 mcmoe/prune-fsgpt-non-core-experts.py \
+  --main_process_port 29510 mcsmoe/prune-fsgpt-non-core-experts.py \
   --task="winogrande" \
   --num_samples_for_merging=512 \
   --samples_batch_size=32 \

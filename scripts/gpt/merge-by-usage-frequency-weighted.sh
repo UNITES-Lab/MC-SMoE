@@ -3,7 +3,7 @@ export CUDA_VISIBLE_DEVICES=1
 
 
 accelerate launch --config_file static/finetune_config.yaml \
-  --main_process_port 29511 mcmoe/merge-fsgpt-by-usage-frequency-weighting.py \
+  --main_process_port 29511 mcsmoe/merge-fsgpt-by-usage-frequency-weighting.py \
   --task="openbookqa" \
   --num_samples_for_merging=256 \
   --samples_batch_size=32 \

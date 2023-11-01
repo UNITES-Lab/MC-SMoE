@@ -4,7 +4,7 @@ export CUDA_VISIBLE_DEVICES=2
 
 
 accelerate launch --config_file static/finetune_config.yaml \
-  --main_process_port 29512 mcmoe/random-merge.py \
+  --main_process_port 29512 mcsmoe/random-merge.py \
   --per_device_train_batch_size=16 \
   --per_device_eval_batch_size=16 \
   --gradient_accumulation_steps=1 \

@@ -4,7 +4,7 @@ export CUDA_VISIBLE_DEVICES=2
 
 
 accelerate launch --config_file static/finetune_config.yaml \
-  --main_process_port 29512 mcmoe/switch-finetune-with-task-specific-pruning.py \
+  --main_process_port 29512 mcsmoe/switch-finetune-with-task-specific-pruning.py \
   --per_device_train_batch_size=8 \
   --per_device_eval_batch_size=64 \
   --gradient_accumulation_steps=1 \

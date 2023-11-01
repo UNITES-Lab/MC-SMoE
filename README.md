@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
 ```shell
 accelerate launch --config_file static/finetune_config.yaml \
-  mcmoe/finetune-switch-transformers.py \
+  mcsmoe/finetune-switch-transformers.py \
   --per_device_train_batch_size=8 \
   --per_device_eval_batch_size=64 \
   --gradient_accumulation_steps=1 \
@@ -66,7 +66,7 @@ accelerate launch --config_file static/finetune_config.yaml \
 #### M-SMoE Expert Permutation Alignment
 
 ```shell
-python -u mcmoe/permute-model.py \
+python -u mcsmoe/permute-model.py \
   --checkpoint="results/copa/switch-32e" \
   --save_dir="results/copa/switch-32e-permuted" 
 ```
@@ -75,7 +75,7 @@ python -u mcmoe/permute-model.py \
 
 ```shell
 accelerate launch --config_file static/finetune_config.yaml \
-  mcmoe/msmoe-merging.py \
+  mcsmoe/msmoe-merging.py \
   --per_device_train_batch_size=16 \    # ======== training arguments from here ========
   --per_device_eval_batch_size=256 \
   --gradient_accumulation_steps=1 \
@@ -105,7 +105,7 @@ accelerate launch --config_file static/finetune_config.yaml \
 
 ```shell
 accelerate launch --config_file static/finetune_config.yaml \
-  --main_process_port 29510 mcmoe/losparse-downstream.py \
+  --main_process_port 29510 mcsmoe/losparse-downstream.py \
   --per_device_train_batch_size=16 \     # ======== training arguments from here ========
   --per_device_eval_batch_size=256 \
   --gradient_accumulation_steps=1 \

@@ -3,7 +3,7 @@ export CUDA_VISIBLE_DEVICES=2
 
 
 accelerate launch --config_file static/finetune_config.yaml \
-  --main_process_port 29512 mcmoe/t5-finetune-on-downstream.py \
+  --main_process_port 29512 mcsmoe/t5-finetune-on-downstream.py \
   --per_device_train_batch_size=8 \
   --per_device_eval_batch_size=64 \
   --gradient_accumulation_steps=1 \

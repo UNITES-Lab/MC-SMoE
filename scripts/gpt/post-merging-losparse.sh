@@ -4,7 +4,7 @@ export CUDA_VISIBLE_DEVICES=1
 
 
 accelerate launch --config_file static/finetune_config.yaml \
-  --main_process_port 29511 mcmoe/fsgpt-zero-shot-losparse.py \
+  --main_process_port 29511 mcsmoe/fsgpt-zero-shot-losparse.py \
   --checkpoint="results/fsgpt/openbookqa/merging/router-logits" \
   --output_dir="results/fsgpt/openbookqa" \
   --task="openbookqa" \

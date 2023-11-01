@@ -4,7 +4,7 @@ export CUDA_VISIBLE_DEVICES=0
 
 
 accelerate launch --config_file static/finetune_config.yaml \
-  --main_process_port 29510 mcmoe/fsgpt-zero-shot-with-task-specific-pruning.py \
+  --main_process_port 29510 mcsmoe/fsgpt-zero-shot-with-task-specific-pruning.py \
   --task="mrpc" \
   --minimum_num_experts=16 \
   --threshold_beta=0.1 \

@@ -4,7 +4,7 @@ export CUDA_VISIBLE_DEVICES=0
 
 
 accelerate launch --config_file static/finetune_config.yaml \
-  --main_process_port 29510 mcmoe/losparse-downstream.py \
+  --main_process_port 29510 mcsmoe/losparse-downstream.py \
   --per_device_train_batch_size=8 \
   --per_device_eval_batch_size=128 \
   --gradient_accumulation_steps=1 \

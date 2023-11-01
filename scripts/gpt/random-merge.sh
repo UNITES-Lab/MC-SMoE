@@ -4,7 +4,7 @@ export CUDA_VISIBLE_DEVICES=5
 
 
 accelerate launch --config_file static/finetune_config.yaml \
-  --main_process_port 29515 mcmoe/random-merge-fsgpt.py \
+  --main_process_port 29515 mcsmoe/random-merge-fsgpt.py \
   --task="mrpc" \
   --strategy="average" \
   --num_samples_for_merging=512 \

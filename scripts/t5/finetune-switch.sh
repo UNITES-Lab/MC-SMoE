@@ -3,7 +3,7 @@ export CUDA_VISIBLE_DEVICES=3
 
 
 accelerate launch --config_file static/finetune_config.yaml \
-  --main_process_port 29513 mcmoe/finetune-switch-transformers.py \
+  --main_process_port 29513 mcsmoe/finetune-switch-transformers.py \
   --per_device_train_batch_size=8 \
   --per_device_eval_batch_size=64 \
   --gradient_accumulation_steps=1 \
