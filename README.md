@@ -26,7 +26,7 @@ impact of insignificant experts. Moreover, we draw an interesting observation th
 dimensionality in the merged expert's weight space, naturally paving the way for additional compression. Hence, our
 final method, $\texttt{MC-SMoE}$ ($\textit{i.e.}$, Merge, then Compress SMoE), further decomposes the merged experts
 into low-rank and structural sparse alternatives. Extensive experiments across $8$ benchmarks validate the effectiveness
-of our proposals. For instance, our $\texttt{MC-SMoE}$ achieves up to $80\%$ memory and a $20\%$ FLOPs reduction, with
+of our proposals. For instance, our $\texttt{MC-SMoE}$ achieves up to $80$% memory and a $20$% FLOPs reduction, with
 virtually no loss in performance.
 
 <img src = "static/pipeline.jpg" align = "center" width="100%" hight="100%">
