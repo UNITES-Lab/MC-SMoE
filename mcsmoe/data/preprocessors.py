@@ -150,12 +150,12 @@ class Seq2SeqZeroShotDataPreProcessor:
         return ret
 
 
-class CasualZeroShotDataPreProcessor:
+class CausalZeroShotDataPreProcessor:
     """
     Examples
     --------
     >>> from datasets import load_dataset
-    >>> proc = CasualZeroShotDataPreProcessor("winogrande")
+    >>> proc = CausalZeroShotDataPreProcessor("winogrande")
     >>> dataset = load_dataset("winogrande", "winogrande_l", split="train[:4]")
     >>> proc(dataset[:2], batched=True).keys()
     dict_keys(['candidates', 'answer_ids'])
@@ -193,16 +193,16 @@ class CasualZeroShotDataPreProcessor:
                         if key not in ret and key in self.keep_specific_keys and key != "idx":
                             ret[key].append(sample[key])
         else:
-            raise NotImplementedError("ZeroShotCasualDataPreProcessor only supports batched=True")
+            raise NotImplementedError("ZeroShotCausalDataPreProcessor only supports batched=True")
         return ret
 
 
-class CasualOneShotDataPreProcessor:
+class CausalOneShotDataPreProcessor:
     """
     Examples
     --------
     >>> from datasets import load_dataset
-    >>> proc = CasualZeroShotDataPreProcessor("winogrande")
+    >>> proc = CausalZeroShotDataPreProcessor("winogrande")
     >>> dataset = load_dataset("winogrande", "winogrande_l", split="train[:4]")
     >>> proc(dataset[:2], batched=True).keys()
     dict_keys(['candidates', 'answer_ids'])
@@ -246,7 +246,7 @@ class CasualOneShotDataPreProcessor:
                         if key not in ret and key in self.keep_specific_keys and key != "idx":
                             ret[key].append(sample[key])
         else:
-            raise NotImplementedError("ZeroShotCasualDataPreProcessor only supports batched=True")
+            raise NotImplementedError("ZeroShotCausalDataPreProcessor only supports batched=True")
         return ret
 
 
@@ -292,7 +292,7 @@ def tokenize_seq2seq(
     return ret
 
 
-def tokenize_seq2se2_to_casual_lm(
+def tokenize_seq2se2_to_causal_lm(
         tokenizer: Union[PreTrainedTokenizer, PreTrainedTokenizerFast],
         batch: Dict[str, List],
 ) -> Dict[str, List]:
@@ -310,7 +310,7 @@ def tokenize_seq2se2_to_casual_lm(
     return ret
 
 
-def tokenize_casual_generation(
+def tokenize_causal_generation(
         tokenizer: Union[PreTrainedTokenizer, PreTrainedTokenizerFast],
         batch: Dict[str, List],
         for_eval: Optional[bool] = False,
@@ -400,7 +400,7 @@ def _replace_new_line_with_eos(text: str, eos_token: str) -> str:
     return text.replace("\n", eos_token)
 
 
-def tokenize_casual_zero_shot(
+def tokenize_causal_zero_shot(
         tokenizer: Union[PreTrainedTokenizer, PreTrainedTokenizerFast],
         batch: Dict[str, List],
         replace_new_line_with_eos: Optional[bool] = True,
