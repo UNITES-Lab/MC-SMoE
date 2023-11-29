@@ -13,12 +13,12 @@ from transformers import GPT2TokenizerFast
 from transformers import logging as hf_logging
 
 from mcsmoe.data import (
-    CasualZeroShotDataPreProcessor,
-    tokenize_casual_zero_shot,
+    CausalZeroShotDataPreProcessor,
+    tokenize_causal_zero_shot,
     TASK_MAPPING_DATASET_ARGUMENTS,
     DataCollatorForLanguageModeling,
     build_index_for_dataset,
-    gather_predictions_references_by_casual_lm_loss
+    gather_predictions_references_by_causal_lm_loss
 )
 from mcsmoe.merging.utils import load_merged_fsgpt_moe_from_checkpoint
 from mcsmoe.pruning.losparse import (
@@ -94,14 +94,14 @@ def post_merging_losparse(
     dataset = raw_dataset['train'].select(range(512))
     dataset = build_index_for_dataset(dataset)
     dataset = dataset.map(
-        CasualZeroShotDataPreProcessor(benchmark=task),
+        CausalZeroShotDataPreProcessor(benchmark=task),
         batched=True,
         num_proc=8,
         remove_columns=dataset.column_names,
         load_from_cache_file=False
     )
     tokenized_dataset = dataset.map(
-        lambda x: tokenize_casual_zero_shot(tokenizer=tokenizer, batch=x, keep_input_only=True),
+        lambda x: tokenize_causal_zero_shot(tokenizer=tokenizer, batch=x, keep_input_only=True),
         num_proc=8,
         batched=True,
         remove_columns=dataset.column_names,
@@ -118,14 +118,14 @@ def post_merging_losparse(
     eval_dataset = raw_dataset["validation"]
     eval_dataset = build_index_for_dataset(eval_dataset)
     eval_dataset = eval_dataset.map(
-        CasualZeroShotDataPreProcessor(benchmark=task),
+        CausalZeroShotDataPreProcessor(benchmark=task),
         batched=True,
         num_proc=8,
         remove_columns=eval_dataset.column_names,
         load_from_cache_file=False
     )
     tokenized_eval_dataset = eval_dataset.map(
-        lambda x: tokenize_casual_zero_shot(tokenizer=tokenizer, batch=x),
+        lambda x: tokenize_causal_zero_shot(tokenizer=tokenizer, batch=x),
         num_proc=8,
         batched=True,
         remove_columns=eval_dataset.column_names,
@@ -197,7 +197,7 @@ def post_merging_losparse(
                 loss_fct(logits[i], shift_labels[i].to(logits.device)) for i in range(logits.shape[0])
             ])
             losses_list += losses.tolist()
-    predictions_references = gather_predictions_references_by_casual_lm_loss(
+    predictions_references = gather_predictions_references_by_causal_lm_loss(
         ids_list=ids_list,
         answer_ids_list=answer_ids_list,
         choice_ids_list=choice_ids_list,

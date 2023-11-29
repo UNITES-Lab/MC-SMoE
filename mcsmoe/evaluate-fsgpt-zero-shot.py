@@ -13,12 +13,12 @@ from transformers import (
 )
 
 from mcsmoe.data import (
-    CasualZeroShotDataPreProcessor,
-    tokenize_casual_zero_shot,
+    CausalZeroShotDataPreProcessor,
+    tokenize_causal_zero_shot,
     TASK_MAPPING_DATASET_ARGUMENTS,
     DataCollatorForLanguageModeling,
     build_index_for_dataset,
-    gather_predictions_references_by_casual_lm_loss
+    gather_predictions_references_by_causal_lm_loss
 )
 from mcsmoe.models import FSGPTForCausalLM, FSGPTMoEForCausalLM
 
@@ -70,14 +70,14 @@ def evaluate_downstream_zero_shot(
 
         eval_dataset = build_index_for_dataset(eval_dataset)
         eval_dataset = eval_dataset.map(
-            CasualZeroShotDataPreProcessor(benchmark=task),
+            CausalZeroShotDataPreProcessor(benchmark=task),
             batched=True,
             num_proc=8,
             remove_columns=eval_dataset.column_names,
             load_from_cache_file=False
         )
         tokenized_eval_dataset = eval_dataset.map(
-            lambda x: tokenize_casual_zero_shot(tokenizer=tokenizer, batch=x),
+            lambda x: tokenize_causal_zero_shot(tokenizer=tokenizer, batch=x),
             num_proc=8,
             batched=True,
             remove_columns=eval_dataset.column_names,
@@ -120,7 +120,7 @@ def evaluate_downstream_zero_shot(
                     loss_fct(logits[i], shift_labels[i].to(logits.device)) for i in range(logits.shape[0])
                 ])
                 losses_list += losses.tolist()
-        predictions_references = gather_predictions_references_by_casual_lm_loss(
+        predictions_references = gather_predictions_references_by_causal_lm_loss(
             ids_list=ids_list,
             answer_ids_list=answer_ids_list,
             choice_ids_list=choice_ids_list,

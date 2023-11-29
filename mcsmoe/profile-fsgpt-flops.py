@@ -12,7 +12,7 @@ from transformers import (
 from mcsmoe.calflops import calculate_flops
 from mcsmoe.data import (
     Seq2SeqDataPreProcessor,
-    tokenize_seq2se2_to_casual_lm,
+    tokenize_seq2se2_to_causal_lm,
     TASK_MAPPING_DATASET_ARGUMENTS,
     DataCollatorForLanguageModeling,
 )
@@ -55,7 +55,7 @@ def prepare_dataloader(task: str, tokenizer: GPT2TokenizerFast, batch_size: int)
         load_from_cache_file=False
     )
     dataset = dataset.map(
-        lambda x: tokenize_seq2se2_to_casual_lm(tokenizer=tokenizer, batch=x),
+        lambda x: tokenize_seq2se2_to_causal_lm(tokenizer=tokenizer, batch=x),
         num_proc=8,
         batched=True,
         remove_columns=dataset.column_names,

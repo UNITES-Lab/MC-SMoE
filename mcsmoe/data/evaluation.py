@@ -253,7 +253,7 @@ def get_copa_evaluate_fn(tokenizer: Union[PreTrainedTokenizer, PreTrainedTokeniz
     return evaluate_fn
 
 
-def gather_predictions_references_by_casual_lm_loss(
+def gather_predictions_references_by_causal_lm_loss(
         ids_list: List[int],
         answer_ids_list: List[int],
         choice_ids_list: List[int],

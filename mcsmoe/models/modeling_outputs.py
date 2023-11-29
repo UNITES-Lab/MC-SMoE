@@ -7,7 +7,7 @@ from transformers.modeling_outputs import ModelOutput
 __all__ = [
     "MoEModelOutputWithPastAndCrossAttentions",
     "MoECausalLMOutputWithPastAndCrossAttentions",
-    "MoECasualLMDistillationOutputWithPastAndCrossAttention",
+    "MoECausalLMDistillationOutputWithPastAndCrossAttention",
     "MoEDistillationOutput",
 ]
 
@@ -35,7 +35,7 @@ class MoECausalLMOutputWithPastAndCrossAttentions(ModelOutput):
     router_logits: Optional[Tuple[torch.FloatTensor]] = None
 
 
-class MoECasualLMDistillationOutputWithPastAndCrossAttention(ModelOutput):
+class MoECausalLMDistillationOutputWithPastAndCrossAttention(ModelOutput):
     loss: Optional[torch.FloatTensor] = None
     logits: torch.FloatTensor = None
     past_key_values: Optional[Tuple[Tuple[torch.FloatTensor]]] = None
