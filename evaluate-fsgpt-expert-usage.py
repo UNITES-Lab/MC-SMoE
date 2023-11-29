@@ -15,8 +15,7 @@ from tqdm import tqdm
 from transformers import (
     AutoTokenizer
 )
-import sys
-sys.path.insert(0,'/home/yl3469/MoE-Efficiency/MC-SMoE/mcsmoe')
+
 from mcsmoe.data import (
     CausalZeroShotDataPreProcessor,
     tokenize_causal_zero_shot,
