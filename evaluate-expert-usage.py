@@ -1,8 +1,6 @@
 import torch
 import transformers.utils.logging as hf_logging
 from accelerate.utils import set_seed
-from accelerate import Accelerator
-from accelerate.utils import set_seed
 from datasets import load_dataset
 from fire import Fire
 from torch.utils.data import DataLoader
@@ -28,8 +26,8 @@ def evaluate_downstream_usage(
         task: str = None,
 ):
 
-    tokenizer = T5TokenizerFast.from_pretrained("google/switch-base-32")
-    model = HFSwitch.from_pretrained(checkpoint)
+    tokenizer = T5TokenizerFast.from_pretrained("google/switch-large-128")
+    model = HFSwitch.from_pretrained("google/switch-large-128")
 
     raw_dataset = load_dataset(*TASK_MAPPING_DATASET_ARGUMENTS[task])
     dataset = raw_dataset["train"].select(range(min(256, len(raw_dataset["train"]))))
