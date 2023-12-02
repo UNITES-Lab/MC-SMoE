@@ -185,6 +185,9 @@ class CausalZeroShotDataPreProcessor:
                 choices_list = self.prompt.get_answer_choices_list(sample)
                 if choices_list is None:
                     ret['text'].append(prompt + "\n" + answer)
+                    ret['answer_idx'].append(0)
+                    ret['choice_idx'].append(0)
+                    ret['idx'].append(sample['idx'])
                 else:
                     answer_idx = choices_list.index(answer)
                     for j, choice in enumerate(choices_list):
