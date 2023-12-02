@@ -183,15 +183,18 @@ class CausalZeroShotDataPreProcessor:
                 sample = {k: v[i] for k, v in examples.items()}
                 prompt, answer = self.prompt.apply(sample)
                 choices_list = self.prompt.get_answer_choices_list(sample)
-                answer_idx = choices_list.index(answer)
-                for j, choice in enumerate(choices_list):
-                    ret['text'].append(prompt + "\n" + choice)
-                    ret['answer_idx'].append(answer_idx)
-                    ret['choice_idx'].append(j)
-                    ret['idx'].append(sample['idx'])
-                    for key in sample:
-                        if key not in ret and key in self.keep_specific_keys and key != "idx":
-                            ret[key].append(sample[key])
+                if choices_list is None:
+                    ret['text'].append(prompt + "\n" + answer)
+                else:
+                    answer_idx = choices_list.index(answer)
+                    for j, choice in enumerate(choices_list):
+                        ret['text'].append(prompt + "\n" + choice)
+                        ret['answer_idx'].append(answer_idx)
+                        ret['choice_idx'].append(j)
+                        ret['idx'].append(sample['idx'])
+                        for key in sample:
+                            if key not in ret and key in self.keep_specific_keys and key != "idx":
+                                ret[key].append(sample[key])
         else:
             raise NotImplementedError("ZeroShotCausalDataPreProcessor only supports batched=True")
         return ret
