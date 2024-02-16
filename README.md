@@ -147,16 +147,16 @@ Please refer to [scripts/t5](scripts/t5) and [scripts/gpt](scripts/gpt) for more
 
 #### Task-Specific Hyper-Parameters
 
-|                | **Batch size** | **Learning rate** |
-| -------------- | -------------- | ----------------- |
-| **SST-2**      | $64$           | $1e-4$            |
-| **MRPC**       | $32$           | $5e-5$            |
-| **MultiRC**    | $32$           | $3e-5$            |
-| **COPA**       | $8$            | $3e-5$            |
-| **WinoGrande** | $32$           | $1e-5$            |
-| **SQuAD**      | $16$           | $5e-5$            |
-| **WikiQA**     | $32$           | $5e-5$            |
-| **HotpotQA**   | $32$           | $1e-4$            |
+|      | **Batch size** | **Learning rate** |
+| ---- | -------------- | ----------------- |
+| SST-2 | $64$           | $1e-4$            |
+| MRPC | $32$           | $5e-5$            |
+| MultiRC | $32$           | $3e-5$            |
+| COPA | $8$            | $3e-5$            |
+| WinoGrande | $32$           | $1e-5$            |
+| SQuAD | $16$           | $5e-5$            |
+| WikiQA | $32$           | $5e-5$            |
+| HotpotQA | $32$           | $1e-4$            |
 
 
 
