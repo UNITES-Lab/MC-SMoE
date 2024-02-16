@@ -132,6 +132,36 @@ accelerate launch --config_file static/finetune_config.yaml \
 Please refer to [scripts/t5](scripts/t5) and [scripts/gpt](scripts/gpt) for more examples (e.g. baselines, ablations).
 
 
+## Hyper-Parameters
+
+#### General Hyper-Parameters
+
+* Optimizer: AdamW
+* Adam $\epsilon$: $1e-6$
+* Adam $\beta$: ($0.9$, $0.98$)
+* Warm-up steps: $16$
+* Weight decay: $0.01$
+* LR scheduler: Linear decay
+* KD $\alpha$: $0.2$
+* KD $T$: $2.0$
+
+#### Task-Specific Hyper-Parameters
+
+|                | **Batch size** | **Learning rate** |
+| -------------- | -------------- | ----------------- |
+| **SST-2**      | $64$           | $1e-4$            |
+| **MRPC**       | $32$           | $5e-5$            |
+| **MultiRC**    | $32$           | $3e-5$            |
+| **COPA**       | $8$            | $3e-5$            |
+| **WinoGrande** | $32$           | $1e-5$            |
+| **SQuAD**      | $16$           | $5e-5$            |
+| **WikiQA**     | $32$           | $5e-5$            |
+| **HotpotQA**   | $32$           | $1e-4$            |
+
+
+
+
+
 
 ## Citation
 
