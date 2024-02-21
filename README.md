@@ -7,6 +7,9 @@ Code for the paper "**Merge, Then Compress: Demystify Efficient SMoE with Hints 
 * Authors: [Pingzhi Li](https://pingzhili.github.io/), [Zhenyu Zhang](https://kyriection.github.io/), [Prateek Yadav](https://prateeky2806.github.io/), [Yi-Lin Sung](https://ylsung.github.io/), [Yu Cheng](https://www.linkedin.com/in/chengyu05/), [Mohit Bansal](https://www.cs.unc.edu/~mbansal/) and [Tianlong Chen](https://tianlong-chen.github.io/)
 * Paper: [arXiv](https://arxiv.org/abs/2310.01334)
 
+Update:
+* 🚀 MC-SMoE now supports Mixtral-8x7B!
+
 ## Overview
 
 Sparsely activated Mixture-of-Experts (SMoE) has shown promise to scale up the learning capacity of neural networks,
