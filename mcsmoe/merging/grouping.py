@@ -267,19 +267,20 @@ class ExpertsGrouperForSwitch(object):
             similarity_matrix = self.get_similarity_matrix(encoder_mlp_name)
             for i in range(num_groups, self.num_experts):
                 # Find the most similar core
+                expert_idx = indices_sorted_by_usage[i]
                 most_similar_core = core_expert_indices[
-                    torch.argmax(similarity_matrix[i, core_expert_indices])
+                    torch.argmax(similarity_matrix[expert_idx, core_expert_indices])
                 ]
                 most_similar_group_label = self._group_state_dict[encoder_mlp_name][most_similar_core]
-                self._group_state_dict[encoder_mlp_name][i] = most_similar_group_label
+                self._group_state_dict[encoder_mlp_name][expert_idx] = most_similar_group_label
                 group_member_count[most_similar_group_label] += 1
-                if group_member_count[self._group_state_dict[encoder_mlp_name][i]] >= encoder_group_capacity:
+                if group_member_count[self._group_state_dict[encoder_mlp_name][expert_idx]] >= encoder_group_capacity:
                     if len(core_expert_indices) == 1:
                         raise ValueError(
                             f"[Merging]The number of groups at Encoder layer {layer_idx} is too small!"
                         )
                     # Kick out the filled group as well as its core, by pop the core from core_experts
-                    core_index = torch.argmax(similarity_matrix[i, core_expert_indices])
+                    core_index = torch.argmax(similarity_matrix[expert_idx, core_expert_indices])
                     core_expert_indices = torch.cat(
                         [core_expert_indices[:core_index], core_expert_indices[core_index + 1:]]
                     )
@@ -299,12 +300,13 @@ class ExpertsGrouperForSwitch(object):
             similarity_matrix = self.get_similarity_matrix(decoder_mlp_name)
             for i in range(num_groups, self.num_experts):
                 # Find the most similar core
+                expert_idx = indices_sorted_by_usage[i]
                 most_similar_core = core_expert_indices[
-                    torch.argmax(similarity_matrix[i, core_expert_indices])
+                    torch.argmax(similarity_matrix[expert_idx, core_expert_indices])
                 ]
                 most_similar_group_label = self._group_state_dict[decoder_mlp_name][most_similar_core]
-                self._group_state_dict[decoder_mlp_name][i] = most_similar_group_label
-                if group_member_count[self._group_state_dict[decoder_mlp_name][i]] >= decoder_group_capacity:
+                self._group_state_dict[decoder_mlp_name][expert_idx] = most_similar_group_label
+                if group_member_count[self._group_state_dict[decoder_mlp_name][expert_idx]] >= decoder_group_capacity:
                     if len(core_expert_indices) == 1:
                         raise ValueError(
                             f"[Merging]The number of groups at Decoder layer {layer_idx} is too small!"
