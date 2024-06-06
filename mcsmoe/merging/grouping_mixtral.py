@@ -183,10 +183,10 @@ class ExpertsGrouperForMixtral(object):
             for i in range(num_groups, self.num_experts):
                 # Find the most similar core
                 most_similar_core = core_expert_indices[
-                    torch.argmax(similarity_matrix[i, core_expert_indices])
+                    torch.argmax(similarity_matrix[indices_sorted_by_usage[i], core_expert_indices])
                 ]
                 most_similar_group_label = self._group_state_dict[ffn_name][most_similar_core]
-                self._group_state_dict[ffn_name][i] = most_similar_group_label
+                self._group_state_dict[ffn_name][indices_sorted_by_usage[i]] = most_similar_group_label
 
         return dom_experts
 
