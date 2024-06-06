@@ -232,10 +232,11 @@ class ExpertsGrouperForFSGPT(object):
             similarity_matrix = self.get_similarity_matrix(ffn_name)
             for i in range(num_groups, self.num_experts):
                 # Find the most similar core
+                expert_idx = indices_sorted_by_usage[i]
                 most_similar_core = indices_sorted_by_usage[
-                    torch.argmax(similarity_matrix[i, indices_sorted_by_usage[:num_groups]])
+                    torch.argmax(similarity_matrix[expert_idx, indices_sorted_by_usage[:num_groups]])
                 ]
-                self._group_state_dict[ffn_name][i] = self._group_state_dict[ffn_name][
+                self._group_state_dict[ffn_name][expert_idx] = self._group_state_dict[ffn_name][
                     most_similar_core]
         return core_experts
 
